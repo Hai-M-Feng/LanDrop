@@ -16,4 +16,7 @@ public final class AppConstants {
     public static final int LOCAL_PORT = 8888;
     public static final int BROADCAST_PORT = 8888;
 
+    // 用户配置
+    public static final String USER_NAME = "HaiMFeng";
+    public static final String DEVICE_ID = "HaiMFeng-PC";
 }
