@@ -2,6 +2,7 @@ module haimfeng.landrop {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.common;
+    requires com.google.gson;
 
     // 导出包含实际类的包
     exports haimfeng.landrop.application;
