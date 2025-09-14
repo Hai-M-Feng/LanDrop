@@ -15,6 +15,7 @@ public final class AppConstants {
     public static final String BROADCAST_IP = "255.255.255.255";
     public static final int LOCAL_PORT = 8888;
     public static final int BROADCAST_PORT = 8888;
+    public static final int BROADCAST_TIMEOUT = 1000;
 
     // 用户配置
     public static final String USER_NAME = "HaiMFeng";
