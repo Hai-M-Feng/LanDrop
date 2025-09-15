@@ -1,6 +1,6 @@
 package haimfeng.landrop.event;
 
-public class ExceptionEvent {
+public class ExceptionEvent extends Event {
     public String exceptionSubmitter; // 异常提交者
     public String exceptionMessage; // 异常信息
     public Throwable exception; // 异常对象
