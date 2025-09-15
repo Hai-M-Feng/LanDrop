@@ -19,5 +19,20 @@ public final class AppConstants {
     public static String USER_NAME = "HaiMFeng";
     public static String DEVICE_UUID = "HaiMFeng-PC";
     public static String LOCAL_IP = "127.0.0.1";
-    public static int LOCAL_PORT = 8888;
+    public static int LOCAL_PORT = 8889;
+
+    public static String getAppConstants() {
+        return "App Name: " + APP_NAME + "\n" +
+                "App Version: " + APP_VERSION + "\n" +
+                "App Author: " + APP_AUTHOR + "\n" +
+                "App URL: " + APP_URL + "\n" +
+                "Debug Mode: " + DEBUG + "\n" +
+                "Broadcast IP: " + BROADCAST_IP + "\n" +
+                "Broadcast Port: " + BROADCAST_PORT + "\n" +
+                "Broadcast Timeout: " + BROADCAST_TIMEOUT + "\n" +
+                "User Name: " + USER_NAME + "\n" +
+                "Device UUID: " + DEVICE_UUID + "\n" +
+                "Local IP: " + LOCAL_IP + "\n" +
+                "Local Port: " + LOCAL_PORT + "\n";
+    }
 }
