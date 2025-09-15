@@ -68,7 +68,7 @@ public class BroadcastSender {
             stopBroadcast();
             eventBus.post(new ExceptionEvent(
                     "haimfeng.landrop.service.BroadcastSender.onStartBroadcastEvent",
-                    "Failed to start broadcast.",
+                    "Failed to start broadcast",
                     e));
         }
     }
@@ -96,7 +96,7 @@ public class BroadcastSender {
     /**
      * 停止广播
      */
-    private void stopBroadcast() {
+    public void stopBroadcast() {
         // 停止广播
         isRunning.set(false);
 
@@ -141,5 +141,13 @@ public class BroadcastSender {
         if (eventBus != null) {
             eventBus.unregister(this);
         }
+    }
+
+    /**
+     * 获取运行状态
+     * @return 运行状态
+     */
+    public boolean isRunning() {
+        return isRunning.get();
     }
 }
