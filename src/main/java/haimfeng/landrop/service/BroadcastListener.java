@@ -46,7 +46,7 @@ public class BroadcastListener {
 
         try {
             // 创建套接字
-            socket = new DatagramSocket(AppConstants.BROADCAST_PORT);
+            socket = new DatagramSocket(AppConstants.LOCAL_PORT);
 
             listenerThread = new Thread(this::listen);
             listenerThread.setDaemon(true);
@@ -87,7 +87,7 @@ public class BroadcastListener {
 
                 // 过滤掉自己发送的广播
                 if (receivedBroadcastPacket != null && receivedBroadcastPacket.deviceUuid != null) {
-                    if (!receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
+                    if (true || !receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
                         eventBus.post(new BroadcastReceivedEvent(receivedBroadcastPacket));
                     }
                 }

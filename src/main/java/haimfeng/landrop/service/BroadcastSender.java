@@ -54,7 +54,7 @@ public class BroadcastSender {
                     broadcastPacket.getBytes(StandardCharsets.UTF_8),
                     broadcastPacket.length(),
                     InetAddress.getByName(AppConstants.BROADCAST_IP),
-                    AppConstants.BROADCAST_PORT);
+                    AppConstants.LOCAL_PORT);
 
             // 创建定时器
             scheduler = Executors.newSingleThreadScheduledExecutor();
