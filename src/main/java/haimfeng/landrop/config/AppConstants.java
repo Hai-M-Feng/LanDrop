@@ -11,13 +11,13 @@ public final class AppConstants {
     public static final boolean DEBUG = true;
 
     // 连接配置
-    public static final String LOCAL_IP = "127.0.0.1";
     public static final String BROADCAST_IP = "255.255.255.255";
-    public static final int LOCAL_PORT = 8888;
     public static final int BROADCAST_PORT = 8888;
     public static final int BROADCAST_TIMEOUT = 1000;
 
     // 用户配置
-    public static final String USER_NAME = "HaiMFeng";
-    public static final String DEVICE_ID = "HaiMFeng-PC";
+    public static String USER_NAME = "HaiMFeng";
+    public static String DEVICE_UUID = "HaiMFeng-PC";
+    public static String LOCAL_IP = "127.0.0.1";
+    public static int LOCAL_PORT = 8888;
 }
