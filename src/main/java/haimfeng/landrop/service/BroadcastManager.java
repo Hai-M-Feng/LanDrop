@@ -18,6 +18,16 @@ public class BroadcastManager {
         public String deviceUuid;
         public String ip;
         public int port;
+
+        @Override
+        public String toString() {
+            return "BroadcastPacket{" +
+                    "userName='" + userName + '\'' +
+                    ", deviceUuid='" + deviceUuid + '\'' +
+                    ", ip='" + ip + '\'' +
+                    ", port=" + port +
+                    '}';
+        }
     }
 
     private final EventBus eventBus; // 事件总线
@@ -59,7 +69,7 @@ public class BroadcastManager {
     private void startBroadcast(AppStartEvent event) {
         String packet = getBroadcastPacket();
         eventBus.post(new StartBroadcastEvent(packet));
-        eventBus.post(new StartListenEvent(""));
+        eventBus.post(new StartListenEvent("Start listen at port " + AppConstants.LOCAL_PORT));
     }
 
     /**
