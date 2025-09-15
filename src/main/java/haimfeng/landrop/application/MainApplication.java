@@ -1,5 +1,7 @@
 package haimfeng.landrop.application;
 
+import haimfeng.landrop.config.AppConstants;
+import haimfeng.landrop.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +14,10 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/haimfeng/landrop/main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle(AppConstants.APP_NAME);
         stage.setScene(scene);
+        MainController controller = fxmlLoader.getController();
+        controller.setPrimaryStage(stage);
         stage.show();
     }
 
