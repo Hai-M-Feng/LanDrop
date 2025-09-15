@@ -1,6 +1,6 @@
 package haimfeng.landrop.event;
 
-public abstract class AppEvent {
+public abstract class AppEvent extends Event {
     public String EventName;
     public String EventData;
 
