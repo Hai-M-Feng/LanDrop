@@ -50,7 +50,7 @@ public class BroadcastListener {
 
             listenerThread = new Thread(this::listen);
             listenerThread.setDaemon(true);
-            listenerThread.setName("BroadcastListenerThread");
+            listenerThread.setName("BroadcastListener Thread");
             isRunning.set(true);
             listenerThread.start();
         }
@@ -88,7 +88,16 @@ public class BroadcastListener {
                 // 过滤掉自己发送的广播
                 if (receivedBroadcastPacket != null && receivedBroadcastPacket.deviceUuid != null) {
                     if (true || !receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
-                        eventBus.post(new BroadcastReceivedEvent(receivedBroadcastPacket));
+                        switch (receivedBroadcastPacket.message) {
+                            case "DISCOVERY": {
+                                eventBus.post(new BroadcastReceivedEvent(receivedBroadcastPacket));
+                                break;
+                            }
+
+                            case "CONNECTION_REQUEST": {
+
+                            }
+                        }
                     }
                 }
             }

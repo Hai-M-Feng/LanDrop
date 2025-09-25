@@ -17,6 +17,7 @@ public class BroadcastManager {
         public String userName;
         public String deviceUuid;
         public String ip;
+        public String message;
         public int port;
 
         @Override
@@ -26,6 +27,7 @@ public class BroadcastManager {
                     ", deviceUuid='" + deviceUuid + '\'' +
                     ", ip='" + ip + '\'' +
                     ", port=" + port +
+                    ", message='" + message + '\'' +
                     '}';
         }
     }
@@ -57,6 +59,7 @@ public class BroadcastManager {
         packet.deviceUuid = AppConstants.DEVICE_UUID;
         packet.ip = AppConstants.LOCAL_IP;
         packet.port = AppConstants.LOCAL_PORT;
+        packet.message = "DISCOVERY";
 
         return gson.toJson(packet);
     }
