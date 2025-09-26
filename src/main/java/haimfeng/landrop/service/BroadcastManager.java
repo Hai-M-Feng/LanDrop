@@ -2,12 +2,10 @@ package haimfeng.landrop.service;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import com.google.gson.Gson;
 import haimfeng.landrop.config.AppConstants;
-import haimfeng.landrop.event.AppStartEvent;
-import haimfeng.landrop.event.AppStopEvent;
-import haimfeng.landrop.event.StartBroadcastEvent;
-import haimfeng.landrop.event.StartListenEvent;
+import haimfeng.landrop.event.*;
+
+import java.util.Map;
 
 public class BroadcastManager {
     /**
@@ -19,6 +17,7 @@ public class BroadcastManager {
         public String ip;
         public String message;
         public int port;
+        public String time;
 
         @Override
         public String toString() {
@@ -28,6 +27,7 @@ public class BroadcastManager {
                     ", ip='" + ip + '\'' +
                     ", port=" + port +
                     ", message='" + message + '\'' +
+                    ", time='" + time + '\'' +
                     '}';
         }
     }
@@ -35,6 +35,8 @@ public class BroadcastManager {
     private final EventBus eventBus; // 事件总线
     private final BroadcastSender broadcastSender; // 广播发送者
     private final BroadcastListener broadcastListener; // 监听者
+
+    private Map<String, BroadcastPacket> receivedBroadcastPackets; // 接收到的广播数据包
 
     /**
      * 构造函数
@@ -51,9 +53,7 @@ public class BroadcastManager {
      * 获取广播数据包
      * @return 广播数据包
      */
-    private String getBroadcastPacket() {
-        Gson gson = new Gson();
-
+    private BroadcastPacket getBroadcastPacket() {
         BroadcastPacket packet = new BroadcastPacket();
         packet.userName = AppConstants.USER_NAME;
         packet.deviceUuid = AppConstants.DEVICE_UUID;
@@ -61,7 +61,7 @@ public class BroadcastManager {
         packet.port = AppConstants.LOCAL_PORT;
         packet.message = "DISCOVERY";
 
-        return gson.toJson(packet);
+        return packet;
     }
 
     /**
@@ -70,7 +70,7 @@ public class BroadcastManager {
      */
     @Subscribe
     private void startBroadcast(AppStartEvent event) {
-        String packet = getBroadcastPacket();
+        BroadcastPacket packet = getBroadcastPacket();
         eventBus.post(new StartBroadcastEvent(packet));
         eventBus.post(new StartListenEvent("Start listen at port " + AppConstants.LOCAL_PORT));
     }
@@ -113,5 +113,22 @@ public class BroadcastManager {
      */
     public boolean getListenStatus() {
         return broadcastListener.isRunning();
+    }
+
+    /**
+     * 接收到广播数据包
+     * @param event 事件
+     */
+    @Subscribe
+    private void onBroadcastReceivedEvent(BroadcastReceivedEvent event) {
+        // 获取数据包
+        BroadcastPacket receivedPacket = event.broadcastPacket;
+        if(receivedPacket == null) return;
+        String uuid = receivedPacket.deviceUuid;
+
+        if (uuid != null && !uuid.isEmpty()) {
+            receivedBroadcastPackets.put(uuid, receivedPacket); // 更新数据包
+            eventBus.post(new UpdateReceivedListEvent(receivedBroadcastPackets.values())); // 发送更新事件
+        }
     }
 }
