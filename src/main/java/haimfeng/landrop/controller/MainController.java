@@ -17,9 +17,8 @@ import javafx.stage.WindowEvent;
 import java.util.UUID;
 
 public class MainController {
-    // 创建一个事件总线
-    public static final EventBus eventBus = new EventBus();
-    private Stage primaryStage;
+    public static final EventBus eventBus = new EventBus(); // 创建一个事件总线
+    private Stage primaryStage; // 主窗口，不能删除，用于调用关闭
 
     /**
      * 初始化
@@ -27,8 +26,7 @@ public class MainController {
     @FXML
     public void initialize()
     {
-        // 注册事件总线
-        eventBus.register(this);
+        eventBus.register(this); // 注册事件总线
 
         AppConstants.DEVICE_UUID = UUID.randomUUID().toString(); // 生成设备唯一标识符
 
@@ -60,4 +58,5 @@ public class MainController {
         eventBus.post(new AppStopEvent("AppStop"));
         eventBus.unregister(this);
     }
+
 }
