@@ -39,7 +39,7 @@
         </MenuBar>
     </top>
     <center>
-        <Button onAction="#ButtonClicked"/>
+
     </center>
     <bottom>
         <AnchorPane prefHeight="15.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

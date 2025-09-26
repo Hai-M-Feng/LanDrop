@@ -21,42 +21,26 @@ public class MainController {
     public static final EventBus eventBus = new EventBus();
     private Stage primaryStage;
 
-    @FXML private BorderPane Main_BorderPane;
-
     /**
      * 初始化
      */
     @FXML
     public void initialize()
     {
-        System.out.println("MainController");
+        // 注册事件总线
         eventBus.register(this);
 
-        AppConstants.DEVICE_UUID = UUID.randomUUID().toString();
+        AppConstants.DEVICE_UUID = UUID.randomUUID().toString(); // 生成设备唯一标识符
 
-        EventLogger eventLogger = new EventLogger(eventBus);
+        EventLogger eventLogger = new EventLogger(eventBus); // 创建一个日志监听器
 
+        // 启动广播
         BroadcastListener broadcastListener = new BroadcastListener(eventBus);
         BroadcastSender broadcastSender = new BroadcastSender(eventBus);
         BroadcastManager broadcastManager = new BroadcastManager(eventBus, broadcastSender, broadcastListener);
 
+        // 启动
         eventBus.post(new AppStartEvent("AppStart"));
-    }
-
-    /**
-     * 按钮点击
-     */
-    @FXML private void ButtonClicked() {
-        eventBus.post("ButtonClicked");
-    }
-
-    /**
-     * 监听按钮点击事件
-     * @param event
-     */
-    @Subscribe
-    public void onButtonClicked(String event) {
-        System.out.println("onButtonClicked: " + event);
     }
 
     /**
