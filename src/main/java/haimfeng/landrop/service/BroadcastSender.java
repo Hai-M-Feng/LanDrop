@@ -2,14 +2,18 @@ package haimfeng.landrop.service;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.gson.Gson;
 import haimfeng.landrop.config.AppConstants;
 import haimfeng.landrop.event.AppStopEvent;
 import haimfeng.landrop.event.ExceptionEvent;
 import haimfeng.landrop.event.StartBroadcastEvent;
+import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
+import haimfeng.landrop.util.TimeUtil;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,10 +24,12 @@ public class BroadcastSender {
     // 成员变量
     private final EventBus eventBus; // 事件总线
     private final AtomicBoolean isRunning = new AtomicBoolean(false); // 运行状态
-    private String broadcastPacket; // 广播数据包
+    private BroadcastPacket broadcastPacket; // 广播数据包
+    private String broadcastPacketData; // 广播数据包数据
     private DatagramSocket socket; // 套接字
     private DatagramPacket packet; // 数据包
     private ScheduledExecutorService scheduler; // 定时器
+    private Gson gson = new Gson(); // Gson
 
     /**
      * 构造函数
@@ -41,20 +47,13 @@ public class BroadcastSender {
     @Subscribe
     public void onStartBroadcastEvent(StartBroadcastEvent event) {
         if (isRunning.get()) stopBroadcast();
-        if (event.EventData.isEmpty()) return;
-        else broadcastPacket = event.EventData;
+        if (event.broadcastPacket == null) return;
+        else broadcastPacket = event.broadcastPacket;
 
         try {
             // 创建套接字
             socket = new DatagramSocket(AppConstants.BROADCAST_PORT);
             socket.setBroadcast(true);
-
-            // 创建数据包
-            packet = new DatagramPacket(
-                    broadcastPacket.getBytes(StandardCharsets.UTF_8),
-                    broadcastPacket.length(),
-                    InetAddress.getByName(AppConstants.BROADCAST_IP),
-                    AppConstants.LOCAL_PORT);
 
             // 创建定时器
             scheduler = Executors.newSingleThreadScheduledExecutor();
@@ -79,9 +78,30 @@ public class BroadcastSender {
     public void sendBroadcast() {
         if (!isRunning.get()) return;
 
+        broadcastPacket.time = TimeUtil.getCurrentTimeString(); // 设置时间
+        broadcastPacketData = new Gson().toJson(broadcastPacket); // 转换为JSON
+
         try {
+            // 创建数据包
+            packet = new DatagramPacket(
+                    broadcastPacketData.getBytes(StandardCharsets.UTF_8),
+                    broadcastPacketData.length(),
+                    InetAddress.getByName(AppConstants.BROADCAST_IP),
+                    AppConstants.LOCAL_PORT);
+
+            // 发送数据包
             if (socket != null && !socket.isClosed()) {
                 socket.send(packet);
+            }
+
+        } catch (UnknownHostException e) {
+            if (isRunning.get()) {
+                stopBroadcast();
+                eventBus.post(new ExceptionEvent(
+                        "haimfeng.landrop.service.BroadcastSender.sendBroadcast",
+                        "Invalid IP string",
+                        e
+                ));
             }
         } catch (Exception e) {
             if (isRunning.get()) {
