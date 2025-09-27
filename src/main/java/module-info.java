@@ -1,4 +1,4 @@
-module haimfeng.landrop {
+open module haimfeng.landrop {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.common;
@@ -13,12 +13,6 @@ module haimfeng.landrop {
     exports haimfeng.landrop.event;
     exports haimfeng.landrop.log;
     exports haimfeng.landrop.service;
-
-    // 开放包以便FXMLLoader可以反射访问
-    opens haimfeng.landrop.application to javafx.fxml;
-    opens haimfeng.landrop.controller to javafx.fxml;
-    opens haimfeng.landrop.service to com.google.common;
-
-    // 开放资源包（即使没有类文件）
-    opens haimfeng.landrop to javafx.fxml;
+    exports haimfeng.landrop.view;
+    exports haimfeng.landrop.model;
 }
