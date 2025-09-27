@@ -40,6 +40,20 @@ public class EventLogger {
                         ((AppEvent) event).EventData
                 );
             }
+            case UpdateReceivedListEvent updateReceivedListEvent -> {
+                logger.info("{}: {}: {}",
+                        event.EventName,
+                        "size: " + updateReceivedListEvent.receivedPackets.size(),
+                        updateReceivedListEvent.receivedPackets.toString()
+                );
+            }
+            case SendConnectionRequestEvent sendConnectionRequestEvent -> {
+                logger.info("{}: {}: {}",
+                        event.EventName,
+                        ((AppEvent) event).EventData,
+                        sendConnectionRequestEvent.broadcastPacket.toString()
+                );
+            }
             case AppEvent appEvent -> {
                 logger.info("{}: {}",
                         event.EventName,
