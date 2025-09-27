@@ -5,6 +5,7 @@ import com.google.common.eventbus.Subscribe;
 import haimfeng.landrop.config.AppConstants;
 import haimfeng.landrop.event.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BroadcastManager {
@@ -21,7 +22,7 @@ public class BroadcastManager {
 
         @Override
         public String toString() {
-            return "BroadcastPacket{" +
+            return "{" +
                     "userName='" + userName + '\'' +
                     ", deviceUuid='" + deviceUuid + '\'' +
                     ", ip='" + ip + '\'' +
@@ -36,7 +37,7 @@ public class BroadcastManager {
     private final BroadcastSender broadcastSender; // 广播发送者
     private final BroadcastListener broadcastListener; // 监听者
 
-    private Map<String, BroadcastPacket> receivedBroadcastPackets; // 接收到的广播数据包
+    private final Map<String, BroadcastPacket> receivedBroadcastPackets; // 接收到的广播数据包
 
     /**
      * 构造函数
@@ -47,6 +48,7 @@ public class BroadcastManager {
         eventBus.register(this);
         this.broadcastSender = broadcastSender;
         this.broadcastListener = broadcastListener;
+        receivedBroadcastPackets = new HashMap<>();
     }
 
     /**
