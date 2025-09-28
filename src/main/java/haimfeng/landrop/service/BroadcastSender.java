@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import haimfeng.landrop.config.AppConstants;
 import haimfeng.landrop.event.AppStopEvent;
 import haimfeng.landrop.event.ExceptionEvent;
-import haimfeng.landrop.event.SendConnectionRequestEvent;
 import haimfeng.landrop.event.StartBroadcastEvent;
 import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
 import haimfeng.landrop.util.TimeUtil;
@@ -88,7 +87,7 @@ public class BroadcastSender {
                     broadcastPacketData.getBytes(StandardCharsets.UTF_8),
                     broadcastPacketData.length(),
                     InetAddress.getByName(AppConstants.BROADCAST_IP),
-                    AppConstants.LOCAL_PORT);
+                    AppConstants.LOCAL_LISTEN_PORT);
 
             // 发送数据包
             if (socket != null && !socket.isClosed()) {
