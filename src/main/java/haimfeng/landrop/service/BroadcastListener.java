@@ -46,7 +46,7 @@ public class BroadcastListener {
 
         try {
             // 创建套接字
-            socket = new DatagramSocket(AppConstants.LOCAL_LISTEN_PORT);
+            socket = new DatagramSocket(AppConstants.LOCAL_UDP_LISTEN_PORT);
 
             listenerThread = new Thread(this::listen);
             listenerThread.setDaemon(true);

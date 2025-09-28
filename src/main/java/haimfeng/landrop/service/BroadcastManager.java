@@ -59,7 +59,7 @@ public class BroadcastManager {
         packet.userName = AppConstants.USER_NAME;
         packet.deviceUuid = AppConstants.DEVICE_UUID;
         packet.ip = AppConstants.LOCAL_IP;
-        packet.port = AppConstants.LOCAL_LISTEN_PORT;
+        packet.port = AppConstants.LOCAL_UDP_LISTEN_PORT;
         packet.message = "DISCOVERY";
 
         return packet;
@@ -73,7 +73,7 @@ public class BroadcastManager {
     private void startBroadcast(AppStartEvent event) {
         BroadcastPacket packet = getBroadcastPacket();
         eventBus.post(new StartBroadcastEvent(packet));
-        eventBus.post(new StartListenEvent("Start listen at port " + AppConstants.LOCAL_LISTEN_PORT));
+        eventBus.post(new StartListenEvent("Start listen at port " + AppConstants.LOCAL_UDP_LISTEN_PORT));
     }
 
     /**

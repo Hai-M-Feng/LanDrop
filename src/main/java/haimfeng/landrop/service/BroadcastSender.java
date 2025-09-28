@@ -87,7 +87,7 @@ public class BroadcastSender {
                     broadcastPacketData.getBytes(StandardCharsets.UTF_8),
                     broadcastPacketData.length(),
                     InetAddress.getByName(AppConstants.BROADCAST_IP),
-                    AppConstants.LOCAL_LISTEN_PORT);
+                    AppConstants.LOCAL_UDP_LISTEN_PORT);
 
             // 发送数据包
             if (socket != null && !socket.isClosed()) {

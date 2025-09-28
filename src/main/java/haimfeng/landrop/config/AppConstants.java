@@ -20,7 +20,7 @@ public final class AppConstants {
     public static String USER_NAME = "HaiMFeng"; // 用户名称
     public static String DEVICE_UUID = "HaiMFeng-PC"; // 设备UUID
     public static String LOCAL_IP = "127.0.0.1"; // 本地IP
-    public static int LOCAL_LISTEN_PORT = 8889; // 本地监听端口
+    public static int LOCAL_UDP_LISTEN_PORT = 8889; // 本地UDP监听端口
 
     /**
      * 获取App常量信息
@@ -38,6 +38,6 @@ public final class AppConstants {
                 "User Name: " + USER_NAME + "\n" +
                 "Device UUID: " + DEVICE_UUID + "\n" +
                 "Local IP: " + LOCAL_IP + "\n" +
-                "Local Port: " + LOCAL_LISTEN_PORT + "\n";
+                "Local Port: " + LOCAL_UDP_LISTEN_PORT + "\n";
     }
 }
