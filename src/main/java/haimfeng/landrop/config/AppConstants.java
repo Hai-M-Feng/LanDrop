@@ -21,6 +21,10 @@ public final class AppConstants {
     public static String LOCAL_IP = "127.0.0.1";
     public static int LOCAL_PORT = 8889;
 
+    /**
+     * 获取App常量信息
+     * @return App常量信息
+     */
     public static String getAppConstants() {
         return "App Name: " + APP_NAME + "\n" +
                 "App Version: " + APP_VERSION + "\n" +
