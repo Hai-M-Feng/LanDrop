@@ -1,6 +1,6 @@
 package haimfeng.landrop.event;
 
-import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
+import haimfeng.landrop.model.BroadcastPacket;
 
 public class StartBroadcastEvent extends AppEvent {
     public BroadcastPacket broadcastPacket;

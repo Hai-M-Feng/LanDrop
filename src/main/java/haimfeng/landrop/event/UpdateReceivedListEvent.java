@@ -1,7 +1,6 @@
 package haimfeng.landrop.event;
 
-import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
-
+import haimfeng.landrop.model.BroadcastPacket;
 import java.util.Collection;
 
 public class UpdateReceivedListEvent extends AppEvent{

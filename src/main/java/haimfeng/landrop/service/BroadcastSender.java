@@ -7,7 +7,7 @@ import haimfeng.landrop.config.AppConstants;
 import haimfeng.landrop.event.AppStopEvent;
 import haimfeng.landrop.event.ExceptionEvent;
 import haimfeng.landrop.event.StartBroadcastEvent;
-import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
+import haimfeng.landrop.model.BroadcastPacket;
 import haimfeng.landrop.util.TimeUtil;
 
 import java.net.DatagramPacket;

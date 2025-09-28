@@ -4,35 +4,12 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import haimfeng.landrop.config.AppConstants;
 import haimfeng.landrop.event.*;
+import haimfeng.landrop.model.BroadcastPacket;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BroadcastManager {
-    /**
-     * 广播数据包类
-     */
-    public class BroadcastPacket {
-        public String userName;
-        public String deviceUuid;
-        public String ip;
-        public String message;
-        public int port;
-        public String time;
-
-        @Override
-        public String toString() {
-            return "{" +
-                    "userName='" + userName + '\'' +
-                    ", deviceUuid='" + deviceUuid + '\'' +
-                    ", ip='" + ip + '\'' +
-                    ", port=" + port +
-                    ", message='" + message + '\'' +
-                    ", time='" + time + '\'' +
-                    '}';
-        }
-    }
-
     private final EventBus eventBus; // 事件总线
     private final BroadcastSender broadcastSender; // 广播发送者
     private final BroadcastListener broadcastListener; // 监听者

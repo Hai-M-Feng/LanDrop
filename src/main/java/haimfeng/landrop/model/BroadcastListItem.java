@@ -1,6 +1,5 @@
 package haimfeng.landrop.model;
 
-import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
 import haimfeng.landrop.util.TimeUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

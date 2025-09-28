@@ -9,7 +9,7 @@ import haimfeng.landrop.event.AppStopEvent;
 import haimfeng.landrop.event.BroadcastReceivedEvent;
 import haimfeng.landrop.event.ExceptionEvent;
 import haimfeng.landrop.event.StartListenEvent;
-import haimfeng.landrop.service.BroadcastManager.BroadcastPacket;
+import haimfeng.landrop.model.BroadcastPacket;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
