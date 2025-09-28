@@ -1,12 +1,12 @@
 package haimfeng.landrop.model;
 
 public class BroadcastPacket {
-    public String userName;
-    public String deviceUuid;
-    public String ip;
-    public String message;
-    public int port;
-    public String time;
+    public String userName; // 用户名称
+    public String deviceUuid; // 设备UUID
+    public String ip; // 设备IP
+    public int port; // 设备端口
+    public String message; // 消息
+    public String time; // 时间
 
     @Override
     public String toString() {
