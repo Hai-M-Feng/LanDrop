@@ -52,7 +52,7 @@ public class BroadcastSender {
 
         try {
             // 创建套接字
-            socket = new DatagramSocket(AppConstants.BROADCAST_PORT);
+            socket = new DatagramSocket(AppConstants.DISCOVERY_BROADCAST_PORT);
             socket.setBroadcast(true);
 
             // 创建定时器

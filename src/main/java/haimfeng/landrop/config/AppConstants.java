@@ -12,7 +12,8 @@ public final class AppConstants {
 
     // 连接配置
     public static final String BROADCAST_IP = "255.255.255.255"; // 广播IP
-    public static final int BROADCAST_PORT = 8888; // 广播端口
+    public static final int DISCOVERY_BROADCAST_PORT = 8888; // 发现广播端口
+    public static final int REQUEST_BROADCAST_PORT = 8887; // 请求广播端口
     public static final int BROADCAST_TIMEOUT = 1000; // 广播超时时间
     public static final int REQUEST_TIMEOUT = 10000; // 请求超时
 
@@ -34,7 +35,7 @@ public final class AppConstants {
                 "App URL: " + APP_URL + "\n" +
                 "Debug Mode: " + DEBUG + "\n" +
                 "Broadcast IP: " + BROADCAST_IP + "\n" +
-                "Broadcast Port: " + BROADCAST_PORT + "\n" +
+                "Broadcast Port: " + DISCOVERY_BROADCAST_PORT + "\n" +
                 "Broadcast Timeout: " + BROADCAST_TIMEOUT + "\n" +
                 "User Name: " + USER_NAME + "\n" +
                 "Device UUID: " + DEVICE_UUID + "\n" +
