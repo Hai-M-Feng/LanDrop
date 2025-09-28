@@ -21,6 +21,7 @@ public final class AppConstants {
     public static String DEVICE_UUID = "HaiMFeng-PC"; // 设备UUID
     public static String LOCAL_IP = "127.0.0.1"; // 本地IP
     public static int LOCAL_UDP_LISTEN_PORT = 8889; // 本地UDP监听端口
+    public static int LOCAL_TCP_LISTEN_PORT = 8890; // 本地TCP监听端口
 
     /**
      * 获取App常量信息
