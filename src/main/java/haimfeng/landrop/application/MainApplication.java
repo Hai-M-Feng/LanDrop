@@ -22,6 +22,10 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+        AppConstants.resetToDefaults();
+        if (args.length > 0) {
+            AppConstants.setDebugConstants(args);
+        }
         launch();
     }
 }

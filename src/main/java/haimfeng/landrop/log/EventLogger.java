@@ -15,7 +15,7 @@ public class EventLogger {
         this.eventBus = eventBus;
         eventBus.register(this);
 
-        logger.info("AppConstants: {{\n{}}}", AppConstants.getAppConstants());
+        logger.info("\n{}", AppConstants.getAppConstants());
     }
 
     @Subscribe

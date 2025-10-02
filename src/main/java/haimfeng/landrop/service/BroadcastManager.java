@@ -109,4 +109,13 @@ public class BroadcastManager {
             eventBus.post(new UpdateReceivedListEvent(receivedBroadcastPackets.values())); // 发送更新事件
         }
     }
+
+    /**
+     * 连接建立事件
+     * @param event 事件
+     */
+    @Subscribe
+    private void onConnectionEstablishedEvent(ConnectionEstablishedEvent event) {
+        stopBroadcast();
+    }
 }

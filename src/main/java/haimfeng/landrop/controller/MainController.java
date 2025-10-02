@@ -12,13 +12,13 @@ import haimfeng.landrop.model.BroadcastPacket;
 import haimfeng.landrop.service.BroadcastListener;
 import haimfeng.landrop.service.BroadcastManager;
 import haimfeng.landrop.service.BroadcastSender;
+import haimfeng.landrop.service.ConnectionManager;
 import haimfeng.landrop.view.BroadcastListItemCell;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -53,6 +53,9 @@ public class MainController {
         BroadcastListener broadcastListener = new BroadcastListener(eventBus);
         BroadcastSender broadcastSender = new BroadcastSender(eventBus);
         BroadcastManager broadcastManager = new BroadcastManager(eventBus, broadcastSender, broadcastListener);
+
+        // 启动连接管理器
+        ConnectionManager connectionManager = new ConnectionManager(eventBus);
 
         // 启动
         eventBus.post(new AppStartEvent("AppStart"));

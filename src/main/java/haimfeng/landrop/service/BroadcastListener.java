@@ -84,7 +84,7 @@ public class BroadcastListener {
 
                 // 过滤掉自己发送的广播
                 if (receivedBroadcastPacket != null && receivedBroadcastPacket.deviceUuid != null) {
-                    if (AppConstants.DEBUG || !receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
+                    if (!receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
                         switch (receivedBroadcastPacket.message) {
                             case DISCOVERY: {
                                 eventBus.post(new BroadcastReceivedEvent(receivedBroadcastPacket));
