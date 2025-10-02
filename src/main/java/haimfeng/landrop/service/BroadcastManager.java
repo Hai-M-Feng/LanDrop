@@ -37,7 +37,7 @@ public class BroadcastManager {
         packet.deviceUuid = AppConstants.DEVICE_UUID;
         packet.ip = AppConstants.LOCAL_IP;
         packet.port = AppConstants.LOCAL_UDP_LISTEN_PORT;
-        packet.message = "DISCOVERY";
+        packet.message = BroadcastPacket.MessageType.DISCOVERY;
 
         return packet;
     }

@@ -5,10 +5,7 @@ import com.google.common.eventbus.Subscribe;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import haimfeng.landrop.config.AppConstants;
-import haimfeng.landrop.event.AppStopEvent;
-import haimfeng.landrop.event.BroadcastReceivedEvent;
-import haimfeng.landrop.event.ExceptionEvent;
-import haimfeng.landrop.event.StartListenEvent;
+import haimfeng.landrop.event.*;
 import haimfeng.landrop.model.BroadcastPacket;
 
 import java.net.DatagramPacket;
@@ -87,15 +84,16 @@ public class BroadcastListener {
 
                 // 过滤掉自己发送的广播
                 if (receivedBroadcastPacket != null && receivedBroadcastPacket.deviceUuid != null) {
-                    if (true || !receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
+                    if (AppConstants.DEBUG || !receivedBroadcastPacket.deviceUuid.equals(AppConstants.DEVICE_UUID)) {
                         switch (receivedBroadcastPacket.message) {
-                            case "DISCOVERY": {
+                            case DISCOVERY: {
                                 eventBus.post(new BroadcastReceivedEvent(receivedBroadcastPacket));
                                 break;
                             }
 
-                            case "CONNECTION_REQUEST": {
-
+                            case CONNECTION_REQUEST: {
+                                eventBus.post(new ReceivedConnectionRequestEvent(receivedBroadcastPacket));
+                                break;
                             }
                         }
                     }
