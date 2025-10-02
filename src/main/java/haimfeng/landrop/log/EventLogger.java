@@ -54,6 +54,32 @@ public class EventLogger {
                         sendConnectionRequestEvent.broadcastPacket.toString()
                 );
             }
+            case AppStartEvent appStartEvent -> {
+                logger.info("{}: {}",
+                        event.EventName,
+                        ((AppEvent) event).EventData
+                );
+            }
+            case ConnectionEstablishedEvent connectionEstablishedEvent -> {
+                logger.info("{}: {}: {}",
+                        event.EventName,
+                        ((AppEvent) event).EventData,
+                        connectionEstablishedEvent.broadcastPacket.toString()
+                );
+            }
+            case ReceivedConnectionRequestEvent receivedConnectionRequestEvent -> {
+                logger.info("{}: {}: {}",
+                        event.EventName,
+                        ((AppEvent) event).EventData,
+                        receivedConnectionRequestEvent.receivedPacket.toString()
+                );
+            }
+            case RequestOutOfTimeEvent requestOutOfTimeEvent -> {
+                logger.info("{}: {}",
+                        event.EventName,
+                        ((AppEvent) event).EventData
+                );
+            }
             case AppEvent appEvent -> {
                 logger.info("{}: {}",
                         event.EventName,
