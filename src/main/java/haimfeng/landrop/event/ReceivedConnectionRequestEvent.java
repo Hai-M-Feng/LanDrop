@@ -6,7 +6,7 @@ public class ReceivedConnectionRequestEvent extends AppEvent{
     public BroadcastPacket receivedPacket;
 
     public ReceivedConnectionRequestEvent(BroadcastPacket receivedPacket) {
-        super("Received a broadcast packet");
+        super("Received a connection request");
         this.receivedPacket = receivedPacket;
     }
 }
